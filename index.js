@@ -8,9 +8,8 @@ Rewrite the code below to use array destructuring instead of assigning each valu
   
     let item = ["Egg", 0.25, 12];
   
-    let name = item[0];
-    let price = item[1];
-    let quantity = item[2];
+    let name ,price, quantity
+    [name,price,quantity] = item;
   
     console.log(`Item: ${name}, Quantity: ${quantity}, Price: ${price}`);
     console.log();
@@ -25,7 +24,7 @@ Rewrite the code below to use array destructuring instead of assigning each valu
   
     let numbers = [3, 5, 4, 2, 6, 1];
   
-    let [one, two, three, four, five, six] = numbers;
+    let [one, two, three, four, five, six] = numbers.sort((a, b) => a - b);
   
     console.log(`One: ${one}, Two: ${two}, Three: ${three}, Four: ${four}, Five: ${five}, Six: ${six}`);
     console.log();
@@ -45,7 +44,7 @@ Rewrite the code below to use array destructuring instead of assigning each valu
     let user = { name: "John", years: 30 };
   
     // your code to the left side:
-    let {} = user;
+    let {name, years: age, isAdmin = false} = user;
   
     console.log(name); // John
     console.log(age); // 30
@@ -62,10 +61,9 @@ Rewrite the code below to use array destructuring instead of assigning each valu
   
     let person = [12, "Chris", "Owen"];
   
-    let firstName = person[1];
-    let lastName = person[2];
-    let age = person[0];
-  
+    let [firstName, lastName, age] = person;
+    [age, firstName, lastName] = [firstName, lastName, age];
+    
     console.log(`Person - Age: ${age}, Name: ${firstName} ${lastName}`);
     console.log();
   }
@@ -81,8 +79,7 @@ Rewrite the code below to use array destructuring instead of assigning each valu
   
     let person = ["Chris", 12, "Owen"];
   
-    let firstName = person[0];
-    let lastName = person[2];
+    let [firstName, ,lastName] = person;
   
     console.log(`Name: ${firstName} ${lastName}`);
     console.log();
@@ -99,7 +96,7 @@ Rewrite the code below to use array destructuring instead of assigning each valu
     const students = ['Christina', 'Jon', 'Alexandare'];
   
     // Write your code here
-    const [] = students;
+    const [,,lastName] = students;
   
     console.log(lastName);
     console.log();
@@ -120,7 +117,7 @@ Rewrite the code below to use array destructuring instead of assigning each valu
     ];
   
     // Write your code here
-    const [] = moreStudents;
+    const [student1,[student2,student3],[student4,student5]] = moreStudents;
   
     console.log(student1, student2, student3, student4, student5);
     console.log();
@@ -148,14 +145,16 @@ Rewrite the code below to use array destructuring instead of assigning each valu
           ],
         },
       }
-      // const {} = info // <-- replace the next few `const` lines with this
-      const title = info.title
+       const {title, protagonist: {name:protagonistName},
+       protagonist:{enemies: [,,,enemy]},enemyTitle = enemy.title, enemyName = enemy.name } = info // <-- replace the next few `const` lines with this
+      /*const title = info.title
       const protagonistName = info.protagonist.name
       const enemy = info.protagonist.enemies[3]
       const enemyTitle = enemy.title
-      const enemyName = enemy.name
+      const enemyName = enemy.name    */
+      
       return `${enemyName} (${enemyTitle}) is an enemy to ${protagonistName} in "${title}"`
     }
-    
+    console.log(nestedArrayAndObject())
   }
   
